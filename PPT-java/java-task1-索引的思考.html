@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html>
 <head>
@@ -32,9 +31,8 @@
 <div class="reveal">
     <div class="slides">
         <section>
-            <h3>唯一索引和普通索引的区别？</h3>
-			<p></P>
-            <h4>Java小课堂</h4>
+            <h2>什么是DB的索引，多大的数据量下建索引会有性能的差别，什么样的情况下该对字段建索引？</h2>
+            <p></p>
             <p>分享人：刘旭晗</p>
         </section>
         <section>
@@ -50,142 +48,151 @@
         <section>
             <h3>1.背景介绍</h3>
         </section>
+
         <section>
-            <p style="text-align:left">索引用来快速地寻找那些具有特定值的记录，如果没有索引，执行查询时Mysql必须从第一个记录开始扫描整个表的所有记录，直至找到符合要求的记录，表里面的记录数量越多，这个操作的代价就越高，如果作为搜索条件的列上已经创建了索引，mysql无需扫描任何记录即可迅速得到目标记录所在的位置。如果表有一千个记录，通过索引查找记录至少要比顺序扫描记录快100倍。所以对于现在的各种大型数据库来说，索引可以大大提高数据库的性能，以至于它变成了数据库不可缺少的一部分。</p>
+            <p>词语解释
+            </p>
+            <p> MySQL官方对索引的定义为：索引（Index）是帮助MySQL高效获取数据的数据结构。提取句子主干，就可以得到索引的本质：索引是数据结构。</p>
+
         </section>
+
+        <section>
+            <p> 什么是数据库索引
+            </p>
+            <p> 数据库索引好比是一本书的目录， 通过书的目录就准确的定位到了书籍具体的内容，能加快数据库的查询速度。</p>
+          
         </section>
-		<section>
+
+
+        <section>
             <h3>2.知识剖析</h3>
-        </section>
-         <section>
-            <p style="text-align:center">mysql提供多种索引类型供选择：普通索引，唯一索引，主键
-            </p>
-            <p style="text-align:left">全文索引，单列索引，与多列索引</p>
-            
+
         </section>
         <section>
-            <p style="text-align:center">普通索引
-            </p>
-            <p style="text-align:left">普通索引的唯一任务是加快对数据的访问速度，因此，应该只为那些最经常出现在查询条件（WHERE column=）或者排序条件（ORDERBY column）中的数据列创建索引</p>
-            <p style="text-align:center">主键</p>
-             <p style="text-align:left">必须为主键字段创建一个索引，这个Mysql索引就是所谓的“主索引”。主索引与唯一索引的唯一区别是：前者在定义时使用的关键字是PRIMARY而不是UNIQUE</p>
-             
-             </section>
-         
-        <section>
-            <p style="text-align:center">唯一性索引
-            </p>
-            <p style="text-align:left">如果确定某个数据列只包含彼此各不相同的值，在为这个数据列创建索引的时候，就应该用关键字UNIQUE把它定义为一个唯一索引，Mysql会在有新纪录插入数据表时，自动检查新纪录的这个字段的值是否已经在某个记录的这个字段里出现过了。如果是，mysql将拒绝插入那条新纪录。也就是说，唯一索引可以保证数据记录的唯一性。事实上，在许多场合，人们创建唯一索引的目的往往不是为了提高访问速度，而只是为了避免数据出现重复</p>
-           
+        <p>　
+            <h3>索引的类型和原理<h3>
+        </p>
         </section>
-		<section>
-         	<p style="text-align:center">索引的优点</p>
-             <p style="text-align:left">1.可以通过建立唯一索引或者主键索引，保证数据库表中每一行数据的唯一性</p>
-             <p style="text-align:left">2.建立索引可以大大提高检索的数据，以及减少表的检索行数</p>
-              <p style="text-align:left">3.在表连接的连接条件，可以加速表与表直接的相连</p>
-               <p style="text-align:left">4.在分组和排序字句进行数据检索，可以减少查询时间中分组和排序时所消耗的时间（数据库的记录会重新排序）</p>
-                <p style="text-align:left">5.建立索引，在查询中使用索引，可以提高性能</p>
-             
-         </section>
-         <section>
-         	<p style="text-align:center">索引的缺点</p>
-             <p style="text-align:left">1.创建索引和维护索引，会耗费时间，随着数据量的增加而增加</p>
-             <p style="text-align:left">2.索引文件会占用物理空间，除了数据表需要占用物理空间之外，每一个索引还会占用一定的物理空间</p>
-              <p style="text-align:left">3.当对表的数据进行INSERT,UPDATE,DELETE的时候，索引也要动态的维护，这样就会降低数据的维护速度，（建立索引会占用磁盘空间的索引文件）。</p>
-             
-         </section>
-       
+        <section>
+            mysql索引的四种类型：主键索引、唯一索引、普通索引和全文索引。
+        </section>
+        <section>
+           <p> 主键索引:</p>
+            主键是一种唯一性索引，但它必须指定为PRIMARY KEY，每个表只能有一个主键。
+        </section>
+        <section>
+            <p>唯一索引:</p>
+            索引列的所有值都只能出现一次，即必须唯一，值可以为空。
+
+        </section>
+        <section>
+            <p>普通索引 :</p>
+            基本的索引类型，值可以为空，没有唯一性的限制。
+        </section>
+        <section>
+            <p>全文索引:</p>
+            全文索引的索引类型为FULLTEXT。全文索引可以在varchar、char、text类型的列上创建。可以通过ALTER TABLE或CREATE INDEX命令创建。对于大规模的数据集，通过ALTER TABLE（或者CREATE INDEX）命令创建全文索引要比把记录插入带有全文索引的空表更快。MyISAM支持全文索引，InnoDB在mysql5.6之后支持了全文索引。</section>
+        </section>
            <section>
+               <h2>索引的原理<h2>
+           </section>
+        <section>
+            <p>相信很多人跟我一样都知道添加完索引后查询速度会变快，那到底为什么会变快呢？</p>
+            如果没有添加索引，在我们进行查询时，是按照表的顺序挨个数据去浏览的，直到浏览到符合查询条件的数据，而且不论查询几条数据，mysql都需要将表的数据从头到尾浏览一遍
+            而在我们添加完索引之后，mysql可以通过算法，在查询数据库时，找到索引文件进行查询，找到相应的键从而获取数据。那查询的算法都有什么，他们又是怎么提高查询效率的？</section>
+
+        <section>
             <h3>3.常见问题</h3>
         </section>
-         <section>
-            <p style="text-align:left">1.如何创建索引</p>
-       
-            <p style="text-align:left">2.隐式类型转换对MySQL选择索引的影响。</p>
-             <p style="text-align:left">3.什么情况下建索引。</p>
-             <p style="text-align:left">4.什么情况不建索引。</p>
-             <p style="text-align:left">5.索引对查询提高多少性能？</p>
-           
-         </section>
-		
+        <section>
+            <p>
+                多大的数据量下建索引会有性能的差别？
+            </p>
+        </section>
+        <section>
+
+            <p>什么样的情况下该对字段建索引？</p>
+
+
+        </section>
+
+        <section>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+        </section>
+
+
         <section>
             <h3>4.解决方案</h3>
-        </section>
-		<section>
-			<p style="text-align:center">1.SQL插入索引语句。</p>
-            <p style="text-align:left">普通索引：ALTER TABLE'table-name' ADD INDEX index_name('column')
-</p>
-<p style="text-align:left">唯一索引：ALTER TABLE'table-name' ADD UNIQUE('column')
-</p>
-<p style="text-align:left">主键索引：ALTER TABLE'table-name' ADD PRIMARY KEY ('column')
-</p>
-         </section>
-       
-             </p>
+            <p>
+                什么情况下，不该加索引？
+                1、在查询中很少使用或者参考的列;
+
+                2、只有很少数据值或者数据大量重复的列，如性别;
+
+                3、定义为text, image和bit数据类型的列，这是因为，这些列的数据量要么相当大，要么取值很少,不利于使用索引;
+
+                4、修改性能远远大于检索性能时，这两种性能互相矛盾，修改性能优先时，不加索引;
+
+            </p>
 
         </section>
+	<section>
+            <p>
+		1、表的主键、外键必须有索引;
+
+                2、数据量超过300的表应该有索引;
+
+                3、经常与其他表进行连接的表，在连接字段上应该建立索引;
+
+                4、经常出现在Where子句中的字段，特别是大表的字段，应该建立索引;
+
+                5、索引应该建在选择性高的字段上;
+		
+	   </p>
+           
+        </section>	       
+
         <section>
-            <p style="text-align:left">2.当文本字段与数字进行比较时，由于类型不同，MySQL需要做隐式类型转换才能进行比较。
-        </p>
-         <p style="text-align:left">默认转换规则是：不同类型全都转换为浮点型m，如果字段是字符，条件是整型，那么会把表中字段全都转换成整型
-        </p>
+
 
         </section>
-        
-         <section>
-            <p style="text-align:left">3.1.在经常需要搜索的列上，可以加快索引的速度
-        </p>
-         <p style="text-align:left">3.2主键列上可以确保列的唯一性（手机号，身份证号，银行卡号）。
-        </p>
-         <p style="text-align:left">3.3在表与表的而连接条件上，加上索引，可以加快连接查询的速度。
-        </p>
-         <p style="text-align:left">3.4.在经常需要排序（order by）分组（group by）和distinct列上加索引可以加快排序查询的时间，（单独order by用不了索引，索引考虑加where或者加limit）
-        </p>
-         <p style="text-align:left">3.5.尽量选择区分度高的列作为索引。
-        </p>
-        <p style="text-align:left">3.6.索引列不能参与计算，保持列“干净”。
-        </p>
-        <p style="text-align:left">3.7.尽量的扩展索引，不要新建索引。
-        </p>
-        
-        </section>
-          <section>
-            <p style="text-align:left">4.1.查询中很少使用到的列，不应该创建索引，如果建立了索引然而还会降低mysql的性能和增大了空间需求。。
-        </p>
-         <p style="text-align:left">4.2很少数据的列也不应该建立索引，比如一个性别字段0或者1，在查询中，结果集的数据占了表中数据行的比例比较大，mysql需要扫描的行数很多，增加索引，并不能提高效率。
-        </p>
-         <p style="text-align:left">4.3定义为text和image和bit数据类型的列不应该增加索引。
-        </p>
-         <p style="text-align:left">4.4.当表的修改（UPDATE,INSERT,DELETE）操作远远大于检索（SELECT）操作时不应该创建索引，这两个操作时互斥的关系。
-        </p>
-        
-        </section>
+
         <section>
             <h3>5.编码实战</h3>
+            <p>让我们来实际操作一下。</p>
         </section>
-		 <section>
+
+        <section>
             <h3>6.扩展思考</h3>
+            <p>为什么加索引后会使写入、修改、删除变慢？</p>
         </section>
-<!--         <section>
-            <p style="text-align:left">Spring容器独立于配置元数据格式，二者之间是解耦的，因此，改变配置方式对 Spring 的框架自身是透明的。</p>  
-			<p style="text-align:left">对于一个使用Spring开发的典型WEB应用程序而言，将配置元数据划分到不同文件，可以清晰反映出应用程序的层，
-			不但便于管理，又可以同时由不同人员开发。</p>
-		 </section>
-		 <section>
-			<p style="text-align:left">beans-web.xml或者ConfigurationForWeb 类定义WEB层/表现层中所操作的Bean;</p>
-			<p style="text-align:left">beans-service.xml或者ConfigurationForService类定义服务层/业务层中所操作的Bean;</p>
-			<p style="text-align:left">beans-dao.xml或者ConfigurationForDao类定义数据访问层中所操作的Bean。</p>
-        </section> -->
-		
-        
+
+        <section>
+            <p>索引能让数据库查询数据的速度上升， 而使写入数据的速度下降，原因很简单的， 因为平衡树这个结构必须一直维持在一个正确的状态， 增删改数据都会改变平衡树各节点中的索引数据内容，破坏树结构， 因此，在每次数据改变时， DBMS必须去重新梳理树（索引）的结构以确保它的正确，这会带来不小的性能开销，也就是为什么索引会给查询以外的操作带来副作用的原因。</p>
+        </section>
+
         <section>
             <h3>7.参考文献</h3>
-			<p style="text-align:center">3.张庆东师兄的ppt</p>
+            <p>
+
+                https://www.cnblogs.com/aspwebchh/p/6652855.html
+            </p>
         </section>
-		
         <section>
             <h3>8.更多讨论</h3>
-            <p>今天的分享就到这里啦，欢迎大家提问和探讨!</p>
+            <p>
+
+            </p>
+
+            <section>
+                <h4>鸣谢</h4>
+                <p>感谢观看，若有错误，还望指正</p>
+                <p><small>BY : 成都分院-JAVA-刘旭晗</small></p>
+            </section>
         </section>
     </div>
 </div>
@@ -194,7 +201,6 @@
 <script src="https://ptteng.github.io/PPT/lib/reveal/reveal.js"></script>
 
 <script>
-
     // 以下为常见配置属性的默认值
     // {
     // 	controls: true, // 是否在右下角展示控制条
@@ -213,7 +219,6 @@
     // 	transitionSpeed: 'default', // 过渡速度，default/fast/slow
     // 	mouseWheel: true, //是否启用通过鼠标滚轮来切换幻灯片
     // }
-
     // 初始化幻灯片
     Reveal.initialize({
         history: true,
