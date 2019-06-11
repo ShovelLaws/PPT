@@ -32,10 +32,10 @@
 <div class="reveal">
     <div class="slides">
         <section>
-            <h2>啥是面向对象？面向对象和面向过程的区别是啥？ </h2>
+            <h2>SpringMVC和Struts的区别是什么，为什么更倾向于使用SpringMVC？ </h2>
 			<p></p>
-            <h3>java 分享会</h3>
-            <p>分享人：孙聪聪</p>
+            <h3>java 小课堂</h3>
+            <p>分享人：刘旭晗</p>
         </section>
         <section>
             <p>1.背景介绍</p>
@@ -54,8 +54,14 @@
 		
 		 <section>
            <p>
-              面向对象语言借鉴了20世纪50年代的人工智能语言LISP，引入了动态绑定的概念和交互式开发环境的思想；始于20世纪60 年代的离散事件模拟语言SIMULA67，引入了类的要领和继承，成形于20世纪70年代的Smalltalk。
-			  面向对象语言的发展有两个方向：一种是纯面向对象语言，如Smalltalk、EIFFEL等；另一种是混合型面向对象语言，即在过程式语言及其它语言中加入类、继承等成分，如C++、Objective-c等。		   
+              Struts是Apache软件基金会（ASF）赞助的一个开源项目。它最初是Jakarta项目中的一个子项目，并在2004年3月成为ASF的顶级项目。它通过采用Java Servlet/JSP技术，实现了基于Java EE Web应用的Model-View-Controller（MVC）设计模式的应用框架，是MVC经典设计模式中的一个经典产品。		   
+           </p>
+		</section>
+	        <section>
+           <p>
+              在Java EE的Web应用发展的初期，除了使用Servlet技术以外，普遍是在JavaServer Pages（JSP）的源代码中，采用HTML与Java代码混合的方式进行开发。因为这两种方式不可避免的要把表现与业务逻辑代码混合在一起，都给前期开发与后期维护带来巨大的复杂度。为了摆脱上述的约束与局限，把业务逻辑代码从表现层中清晰的分离出来，2000年，Craig McClanahan采用了MVC的设计模式开发Struts。后来该框架产品一度被认为是最广泛、最流行JAVA的WEB应用框架。
+2006年，WebWork与Struts的Java EEWeb框架的团体，决定合作共同开发一个新的，整合了WebWork与Struts优点，并且更加优雅、扩展性更强的框架，命名为“Struts 2”，原Struts的1.x版本产品称为“Struts 1”。Struts项目并行提供与维护两个主要版本的框架产品——Struts 1与Struts 2。
+在2008年12月，Struts1发布了最后一个正式版（1.3.10），而2013年4月5日，Struts开发组宣布终止了Struts 1的软件开发周期。		   
            </p>
 		</section>
 			
@@ -63,14 +69,27 @@
         <section>
             <h3>2.知识剖析</h3>
 			<p>
-             面向对象是相对于面向过程而言的。语言刻画客观系统较为自然，便于软件扩充与复用。有四个主要特点：
-			 （1）识认性，系统中的基本构件可识认为一组可识别的离散对象；
-			 （2）类别性，系统具有相同数据结构与行为的所有对象可组成一类；
-			 （3）多态性，对象具有惟一的静态类型和多个可能的动态类型；
-			 （4）继承性，在基本层次关系的不同类中共享数据和操作。
+              Struts的工作原理？
+
            </p>
 
 		</section>
+	    <section>
+            <p>
+	     1.客户端（Client）向Action发送一个请求（Request）;
+             2.Container通过web.xml映射请求，并获得控制器（Controller）的名字;
+             3.容器（Container）调用控制器（StrutsPrepareAndExecuteFilter或FilterDispatcher）;
+             4.控制器（Controller）通过ActionMapper获得Action的信息;
+             5.控制器（Controller）调用ActionProxy;
+             6.ActionProxy读取struts.xml文件获取action和interceptor stack的信息;
+             7.ActionProxy把request请求传递给ActionInvocation;
+             8.ActionInvocation依次调用action和interceptor;
+             9.根据action的配置信息，产生result;
+             10.Result信息返回给ActionInvocation;
+             11.产生一个HttpServletResponse响应;
+             12.产生的响应行为发送给客户端;
+			</p>
+        </section>
 
 		
          <section>
@@ -80,7 +99,7 @@
         
          <section>
             <p>
-				概念理解不透彻
+				Struts和SpringMVC的区别，为什么更倾向使用SpingMVC？
 			</p>
         </section>
        
@@ -89,18 +108,17 @@
    
         <section>
             <h3>4.解决方案</h3>
-            <p></p>
-        </section>
-
-        <section>       	
-        	<p>把我视频保存下来没事常看看，最重要的还是多练习代码</p>
-        	
+            <p>
+		    1.SpringMVC是基于方法开发的，而Struts2是基于类开发的；
+		    2.SpringMVC的入口是servlet，Struts2的入口是filter；
+		    3.性能上SpinrgMVC比Struts2要强一些；
+		    4.过程中存储数据的方式不同：Struts2采用值栈存储请求和相应的数据,通过OGNL存取数据,SpringMVC通过参数绑定期将request请求内容解析,并给方法形参赋值;
+		</p>
         </section>
 		
 		
         <section>
             <h3>5.编码实战</h3>
-            <p>让我们来看看这个例子的代码。</p>
         </section>
 
        
@@ -108,25 +126,20 @@
             <h3>6.扩展思考</h3>
         </section>
 
-        <section>
-            <p>面向对象跟面向过程比有哪些好处</p>
-        </section>
-        
-		<section>
-           <p>省代码<p>
-        </section>
+  
+		
         <section>
             <h3>7.参考文献</h3>
-            <p>来源于百度https://baike.baidu.com/item/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E8%AF%AD%E8%A8%80/215742?fr=aladdin</p>
+           
         </section>
         <section>
             <h3>8.更多讨论</h3>
             <p>畅所欲言</p>
         </section>
         <section>
-            <h4>鸣谢李宁虎</h4>
-            <p>今天的分享就到这里啦，欢迎大家点赞、转发、留言、拍砖~</p>
-            <p><small>BY : 北京分院 孙聪聪</small></p>
+            <h4>鸣谢</h4>
+            <p>今天的分享就到这里啦，感谢大家的观看~</p>
+            <p><small>成都分院 刘旭晗</small></p>
         </section>
 
     </div>
