@@ -32,10 +32,10 @@
 <div class="reveal">
     <div class="slides">
         <section>
-            <h2>什么是http协议？Get和post请求有什么区别？http请求content-Type有几种，有什么区别？http状态码有哪些？</h2>
+            <h2>Mybatis有哪些常用标签？怎么使用标签来完成动态查询？</h2>
 			<p></p>
             <h3>java小课堂</h3>
-            <p>分享人：万全林</p>
+            <p>分享人：刘旭晗</p>
         </section>
         <section>
             <p>1.背景介绍</p>
