@@ -50,11 +50,7 @@
             <h3>1.背景介绍</h3>
         </section>
         <section>
-            <p>JSP标准标签库（JSTL）是一个JSP标签集合，它封装了JSP应用的通用核心功能。</p>
-            <p>JSTL是apache对EL表达式的扩展（也就是说JSTL依赖EL），JSTL是标签语言。</p>
-            <p>JSTL标签使用以来非常方便，它与JSP动作标签一样，只不过它不是JSP内置的标签，需要我们自己导包，以及指定标签库而已。</p>
-        </section>
-        <section>
+            <p>JSP标准标签库（JSTL）是一个JSP标签集合，它封装了JSP应用的通用核心功能。</p> 
             <p>JSTL支持通用的、结构化的任务，比如迭代，条件判断，XML文档操作，国际化标签，SQL标签。 除了这些，它还提供了一个框架来使用集成JSTL的自定义标签。</p>
         </section>
         <section>
@@ -69,39 +65,105 @@
             <h3>2.知识剖析</h3>
         </section>
         <section>
-            <p>JSTL 核心标签库(C标签)标签共有14个，功能上分为4类：</p>
-            <p>（1）表达式控制标签：</p>
-            <p>（2）流程控制标签：</p>
-            <p>（3）循环标签：</p>
-            <p>（4）URL操作标签：</p>
+            <p>JSTL 核心标签库(C标签)标签共有14个，从功能上分为4类：</p>
+            <p>（1）表达式控制标签：out、set、remove、catch；</p>
+            <p>（2）流程控制标签：if、choose、when、otherwise；</p>
+            <p>（3）循环标签：forEach、forTokens</p>
+            <p>（4）URL操作标签：import、url、redirect、param；</p>
         </section>
         <section>
-            <p>表达式控制标签：</p>
-            <p>(1)c:out标签：用来显示一个表达式的结果，与<%= %>作用相似，它们的区别就是标签可以直接通过"."操作符来访问属性。</p>
-            <p>(2)c:set标签：用于设置变量值和对象属性。</p>
-            <p>(3)c:remove标签：用于移除一个变量，可以指定这个变量的作用域，若未指定，则默认为变量第一次出现的作用域。</p>
-            <p>(4)c:catch标签：主要用来处理产生错误的异常状况，并且将错误信息储存起来。</p>
+            <p><c:out>标签用来显示一个表达式的结果，与<%= %>作用相似，它们的区别就是<c:out>标签可以直接通过"."操作符来访问属性。
+举例来说，如果想要访问class.student，只需要这样写：<c:out value="class.student">。
+<c:out>标签会自动忽略XML标记字符，所以它们不会被当做标签来处理。
+    语法格式：<c:out value="<string>" default="<string>" escapeXml="<true|false>"/></p>
+        </section>
+                <section>
+            <p><c:set>标签用于设置变量值和对象属性。
+<c:set>标签就是<jsp:setProperty>行为标签的孪生兄弟。
+这个标签之所以很有用呢，是因为它会计算表达式的值，然后使用计算结果来设置 JavaBean 对象或 java.util.Map 对象的值。
+    语法格式：<c:set
+   var="<string>"
+   value="<string>"
+   target="<string>"
+   property="<string>"
+   scope="<string>"/></p>
+        </section>
+                <section>
+            <p><c:remove>标签用于移除一个变量，可以指定这个变量的作用域，若未指定，则默认为变量第一次出现的作用域。
+这个标签不是特别有用，不过可以用来确保JSP完成清理工作。
+    语法格式：<c:remove var="<string>" scope="<string>"/>  </p>
         </section>
         <section>
-            <p>流程控制标签：</p>
-            <p>(1)c:if标签：判断表达式的值，如果表达式的值为 true 则执行其主体内容。</p>
-            <p>(2)c:choose标签：与Java switch语句的功能一样，用于在众多选项中做出选择。</p>
-            <p>(3)c:when标签：c:when在c:choose中，就相对于case在switch语句中。</p>
-            <p>(4)c:otherwise标签：c:otherwise在c:choose中，就相对于default在switch语句中。</p>
-        </section>
-        <section>
-            <p>循环标签：</p>
-            <p>它们封装了Java中的for，while，do-while循环。</p>
-            <p>(1)c:forEach标签：更加通用的标签，因为它迭代一个集合中的对象。</p>
-            <p>(2)c:forTokens标签：通过指定分隔符将字符串分隔为一个数组然后迭代它们。</p>
-        </section>
-        <section>
-            <p>URL操作标签：</p>
-            <p>(1)c:import标签：提供了所有<jsp:include>行为标签所具有的功能，同时也允许包含绝对URL</p>
-            <p>(2)c:url标签：将URL格式化为一个字符串，然后存储在一个变量中。</p>
-            <p>(3)c:redirect标签：通过自动重写URL来将浏览器重定向至一个新的URL，它提供内容相关的URL，并且支持c:param标签。</p>
-            <p>(4)c:param标签：用于在标签中指定参数，而且与URL编码相关。</p>
-        </section>
+            <p><c:catch> 标签主要用来处理产生错误的异常状况，并且将错误信息储存起来。
+    语法格式：<c:catch var="<string>">
+...
+</c:catch>  </p>
+        </section>  
+                <section>
+            <p><c:choose>标签与Java switch语句的功能一样，用于在众多选项中做出选择。
+switch语句中有case，而<c:choose>标签中对应有<c:when>，switch语句中有default，而<c:choose>标签中有<c:otherwise>。
+    语法格式：<c:choose>
+    <c:when test="<boolean>">
+        ...
+    </c:when>
+    <c:when test="<boolean>">
+        ...
+    </c:when>
+    ...
+    ...
+    <c:otherwise>
+        ...
+    </c:otherwise>
+</c:choose> </p>
+                </section>
+                <section>
+            <p><c:import>标签提供了所有<jsp:include>行为标签所具有的功能，同时也允许包含绝对URL。
+举例来说，使用<c:import>标签可以包含一个FTP服务器中不同的网页内容。
+                语法格式：<c:import
+   url="<string>"
+   var="<string>"
+   scope="<string>"
+   varReader="<string>"
+   context="<string>"
+   charEncoding="<string>"/></p>
+                </section>
+                <section>
+            <p> forEach和forTokens标签封装了Java中的for，while，do-while循环。
+相比而言，<c:forEach>标签是更加通用的标签，因为它迭代一个集合中的对象。
+<c:forTokens>标签通过指定分隔符将字符串分隔为一个数组然后迭代它们。
+                语法格式：<c:forEach
+    items="<object>"
+    begin="<int>"
+    end="<int>"
+    step="<int>"
+    var="<string>"
+    varStatus="<string>">
+    <c:forTokens
+    items="<string>"
+    delims="<string>"
+    begin="<int>"
+    end="<int>"
+    step="<int>"
+    var="<string>"
+    varStatus="<string>"></p>
+                </section>
+                <section>
+            <p><c:url>标签将URL格式化为一个字符串，然后存储在一个变量中。这个标签在需要的时候会自动重写URL。var属性用于存储格式化后的URL。
+<c:url>标签只是用于调用response.encodeURL()方法的一种可选的方法。它真正的优势在于提供了合适的URL编码，包括<c:param>中指定的参数。
+                语法格式：<c:url
+  var="<string>"
+  scope="<string>"
+  value="<string>"
+  context="<string>"/></p>
+                </section>
+                <section>
+            <p><c:param>标签用于在<c:url>标签中指定参数，而且与URL编码相关。
+在<c:param>标签内，name属性表明参数的名称，value属性表明参数的值。
+                语法格式：<c:param name="<string>" value="<string>"/>
+                <c:redirect>标签通过自动重写URL来将浏览器重定向至一个新的URL，它提供内容相关的URL，并且支持c:param标签。
+                    <c:redirect url="<string>" context="<string>"/></p>
+                </section>
+                
          <section>
             <h3>3.常见问题</h3>
         </section>
@@ -112,7 +174,8 @@
             <h3>4.解决方案</h3>
         </section>
         <section>
-            <p>JSTL的目标是为了简化JSP页面的设计。对于页面设计人员来说，使用脚本语言（默认值是JAVA语言）操作动态数据是比较困难的，而采用标签和表达式语言相对容易一些，JSTL的使用为页面设计人员和程序开发人员的分工协作提供了便利。</p>
+            <p>JSTL的目标是为了简化JSP页面的设计。对于页面设计人员来说，使用脚本语言（默认值是JAVA语言）操作动态数据是比较困难的，而采用标签和表达式语言相对容易一些。
+            而C标签的使用可以通过较为简单明了的方式帮助设计人员来对动态数据进行操作，从而实现很多功能。</p>
         </section>
         <section>
             <h3>5.编码实战</h3>
@@ -120,22 +183,18 @@
         <section>
             <h3>6.扩展思考</h3>
         </section>
-        <section>
-            <p>JSTL函数一般在什么情况下使用？</p>
-            <P>作为一个JSTL标签里的一部分，JSTL函数也是为了简化JSP页面。所以在需要优化代码的时候使用就行。</P>
-        </section>       
+              
         <section>
             <h3>7.参考文献</h3>
-            <p>参考一：<a href="http://www.runoob.com/jsp/jsp-jstl.html" target="_blank">http://www.runoob.com/jsp/jsp-jstl.html</a></p>
+            <p>https://www.runoob.com/jsp/jsp-jstl.html</p>
         </section>
         <section>
             <h3>8.更多讨论</h3>
-            <p>欢迎大家交流和讨论</p>
         </section>
         <section>
             <h4>鸣谢</h4>
             <p>感谢大家观看</p>
-            <p><small>BY : 郭伟杰</small></p>
+            <p><small>BY : 刘旭晗</small></p>
         </section>
 
     </div>
