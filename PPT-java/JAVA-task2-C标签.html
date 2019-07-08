@@ -89,79 +89,79 @@ c:set标签就是jsp:setProperty行为标签的孪生兄弟。
    scope="<string>"/</p>
         </section>
                 <section>
-            <p><c:remove>标签用于移除一个变量，可以指定这个变量的作用域，若未指定，则默认为变量第一次出现的作用域。
+            <p>c:remove标签用于移除一个变量，可以指定这个变量的作用域，若未指定，则默认为变量第一次出现的作用域。
 这个标签不是特别有用，不过可以用来确保JSP完成清理工作。
-    语法格式：<c:remove var="<string>" scope="<string>"/>  </p>
+    语法格式：c:remove var="<string>" scope="<string>"/  </p>
         </section>
         <section>
-            <p><c:catch> 标签主要用来处理产生错误的异常状况，并且将错误信息储存起来。
-    语法格式：<c:catch var="<string>">
+            <p>c:catch 标签主要用来处理产生错误的异常状况，并且将错误信息储存起来。
+    语法格式：c:catch var="<string>"
 ...
-</c:catch>  </p>
+/c:catch  </p>
         </section>  
                 <section>
-            <p><c:choose>标签与Java switch语句的功能一样，用于在众多选项中做出选择。
-switch语句中有case，而<c:choose>标签中对应有<c:when>，switch语句中有default，而<c:choose>标签中有<c:otherwise>。
-    语法格式：<c:choose>
-    <c:when test="<boolean>">
+            <p>c:choose标签与Java switch语句的功能一样，用于在众多选项中做出选择。
+switch语句中有case，而c:choose标签中对应有c:when，switch语句中有default，而c:choose标签中有c:otherwise。
+    语法格式：c:choose
+    c:when test="<boolean>"
         ...
-    </c:when>
-    <c:when test="<boolean>">
+    /c:when
+    c:when test="<boolean>"
         ...
-    </c:when>
+    /c:when
     ...
     ...
-    <c:otherwise>
+    c:otherwise
         ...
-    </c:otherwise>
-</c:choose> </p>
+    /c:otherwise
+/c:choose </p>
                 </section>
                 <section>
-            <p><c:import>标签提供了所有<jsp:include>行为标签所具有的功能，同时也允许包含绝对URL。
-举例来说，使用<c:import>标签可以包含一个FTP服务器中不同的网页内容。
-                语法格式：<c:import
+            <p>c:import标签提供了所有<jsp:include>行为标签所具有的功能，同时也允许包含绝对URL。
+举例来说，使用c:import标签可以包含一个FTP服务器中不同的网页内容。
+                语法格式：c:import
    url="<string>"
    var="<string>"
    scope="<string>"
    varReader="<string>"
    context="<string>"
-   charEncoding="<string>"/></p>
+   charEncoding="<string>"/</p>
                 </section>
                 <section>
             <p> forEach和forTokens标签封装了Java中的for，while，do-while循环。
-相比而言，<c:forEach>标签是更加通用的标签，因为它迭代一个集合中的对象。
-<c:forTokens>标签通过指定分隔符将字符串分隔为一个数组然后迭代它们。
-                语法格式：<c:forEach
+相比而言，c:forEach标签是更加通用的标签，因为它迭代一个集合中的对象。
+c:forTokens标签通过指定分隔符将字符串分隔为一个数组然后迭代它们。
+                语法格式：c:forEach
     items="<object>"
     begin="<int>"
     end="<int>"
     step="<int>"
     var="<string>"
-    varStatus="<string>">
-    <c:forTokens
+    varStatus="<string>"
+    c:forTokens
     items="<string>"
     delims="<string>"
     begin="<int>"
     end="<int>"
     step="<int>"
     var="<string>"
-    varStatus="<string>"></p>
+    varStatus="<string>"</p>
                 </section>
                 <section>
-            <p><c:url>标签将URL格式化为一个字符串，然后存储在一个变量中。这个标签在需要的时候会自动重写URL。var属性用于存储格式化后的URL。
-<c:url>标签只是用于调用response.encodeURL()方法的一种可选的方法。它真正的优势在于提供了合适的URL编码，包括<c:param>中指定的参数。
-                语法格式：<c:url
+            <p>c:url标签将URL格式化为一个字符串，然后存储在一个变量中。这个标签在需要的时候会自动重写URL。var属性用于存储格式化后的URL。
+c:url标签只是用于调用response.encodeURL()方法的一种可选的方法。它真正的优势在于提供了合适的URL编码，包括c:param中指定的参数。
+                语法格式：c:url
   var="<string>"
   scope="<string>"
   value="<string>"
-  context="<string>"/></p>
+  context="<string>"/</p>
                 </section>
                 <section>
-            <p><c:param>标签用于在<c:url>标签中指定参数，而且与URL编码相关。
-在<c:param>标签内，name属性表明参数的名称，value属性表明参数的值。
-                语法格式：<c:param name="<string>" value="<string>"/>
-                <c:redirect>标签通过自动重写URL来将浏览器重定向至一个新的URL，它提供内容相关的URL，并且支持c:param标签。
-                    <c:redirect url="<string>" context="<string>"/></p>
+            <p>c:param标签用于在<c:url>标签中指定参数，而且与URL编码相关。
+在c:param标签内，name属性表明参数的名称，value属性表明参数的值。
+                语法格式：c:param name="<string>" value="<string>"/
+                c:redirect标签通过自动重写URL来将浏览器重定向至一个新的URL，它提供内容相关的URL，并且支持c:param标签。
+                    c:redirect url="<string>" context="<string>"/</p>
                 </section>
                 
          <section>
