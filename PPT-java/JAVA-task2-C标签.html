@@ -74,19 +74,19 @@
         <section>
             <p>c:out标签用来显示一个表达式的结果，与<%= %>作用相似，它们的区别就是<c:out>标签可以直接通过"."操作符来访问属性。
 举例来说，如果想要访问class.student，只需要这样写：<c:out value="class.student">。
-<c:out>标签会自动忽略XML标记字符，所以它们不会被当做标签来处理。
+c:out标签会自动忽略XML标记字符，所以它们不会被当做标签来处理。
     语法格式：c:out value="<string>" default="<string>" escapeXml="<true|false>"/</p>
         </section>
                 <section>
-            <p><c:set>标签用于设置变量值和对象属性。
-<c:set>标签就是<jsp:setProperty>行为标签的孪生兄弟。
+            <p>c:set标签用于设置变量值和对象属性。
+c:set标签就是jsp:setProperty行为标签的孪生兄弟。
 这个标签之所以很有用呢，是因为它会计算表达式的值，然后使用计算结果来设置 JavaBean 对象或 java.util.Map 对象的值。
-    语法格式：<c:set
+    语法格式：c:set
    var="<string>"
    value="<string>"
    target="<string>"
    property="<string>"
-   scope="<string>"/></p>
+   scope="<string>"/</p>
         </section>
                 <section>
             <p><c:remove>标签用于移除一个变量，可以指定这个变量的作用域，若未指定，则默认为变量第一次出现的作用域。
