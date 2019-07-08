@@ -147,7 +147,7 @@ c:forTokens标签通过指定分隔符将字符串分隔为一个数组然后迭
     step="<int>"
     var="<string>"
     varStatus="<string>"</p>
-                </section>
+     </section>
                   <section>
             <p>c:url标签将URL格式化为一个字符串，然后存储在一个变量中。这个标签在需要的时候会自动重写URL。var属性用于存储格式化后的URL。
 c:url标签只是用于调用response.encodeURL()方法的一种可选的方法。它真正的优势在于提供了合适的URL编码，包括c:param中指定的参数。
@@ -158,12 +158,12 @@ c:url标签只是用于调用response.encodeURL()方法的一种可选的方法�
   context="<string>"/  </p>
                 </section>
                 <section>
-            <p>c:param标签用于在<c:url>标签中指定参数，而且与URL编码相关。
+            <p>c:param标签用于在c:url标签中指定参数，而且与URL编码相关。
 在c:param标签内，name属性表明参数的名称，value属性表明参数的值。
                 语法格式：c:param name="<string>" value="<string>"/
                 c:redirect标签通过自动重写URL来将浏览器重定向至一个新的URL，它提供内容相关的URL，并且支持c:param标签。
                     c:redirect url="<string>" context="<string>"/  </p>
-                </section>
+           </section>
                 
          <section>
             <h3>3.常见问题</h3>
