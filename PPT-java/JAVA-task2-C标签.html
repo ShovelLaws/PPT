@@ -72,10 +72,10 @@
             <p>（4）URL操作标签：import、url、redirect、param；</p>
         </section>
         <section>
-            <p><c:out>标签用来显示一个表达式的结果，与<%= %>作用相似，它们的区别就是<c:out>标签可以直接通过"."操作符来访问属性。
+            <p>c:out标签用来显示一个表达式的结果，与<%= %>作用相似，它们的区别就是<c:out>标签可以直接通过"."操作符来访问属性。
 举例来说，如果想要访问class.student，只需要这样写：<c:out value="class.student">。
 <c:out>标签会自动忽略XML标记字符，所以它们不会被当做标签来处理。
-    语法格式：<c:out value="<string>" default="<string>" escapeXml="<true|false>"/></p>
+    语法格式：c:out value="<string>" default="<string>" escapeXml="<true|false>"/</p>
         </section>
                 <section>
             <p><c:set>标签用于设置变量值和对象属性。
